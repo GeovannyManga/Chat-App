@@ -1,0 +1,17 @@
+
+
+
+
+.container-message {
+    background-color: blueviolet;
+  display: inline-block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  min-width:min-content;
+  max-width: 80%;
+  margin-left: 1em;
+  border-radius: 16px;
+  padding: 1em;
+  color: whitesmoke;
+  align-self: flex-start;
+}
