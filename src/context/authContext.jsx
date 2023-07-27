@@ -1,6 +1,8 @@
-import { useContext, createContext } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { auth } from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
+
+
 
 
 export const authContext = createContext()
@@ -29,13 +31,30 @@ export function AuthProvider({children}) {
         return await signInWithPopup(auth, responseGoogle)
     }
 
-    const logOut = async()=>{
-        const response = await logOut()
+    const logout = async()=>{
+        const response = await signOut(auth)
+        console.log(response)
     }
+
+    const [user, setUser] = useState("");
+  /* A hook that is called when the component is mounted and when the component is updated. */
+  useEffect(() => {
+    const subscribed = onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) {
+        setUser("");
+      } else {
+        setUser(currentUser);
+      }
+    });
+    return () => subscribed();
+  }, []);
+
     return <authContext.Provider value={{
         register,
         login,
-        loginWithGoogle
+        loginWithGoogle,
+        logout, 
+        user
     }}>{children}</authContext.Provider>
 }
 

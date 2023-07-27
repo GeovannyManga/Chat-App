@@ -1,22 +1,29 @@
+import React, { useEffect, useState } from 'react';
+import io from "socket.io-client";
+import { useAuth } from "../../context/authContext";
 
-import { useState } from "react";
+const Input = () => {
+    const auth = useAuth()
+    const socket = io('http://localhost:3000');
+   const [message, setMessage]= useState("")
+   const [messageList, setMessageList]= useState([])
 
-const Input = (socket) => {
-
-
-    const [message, setMessage] = useState('')
-    
-    const handlerSubmit= (e)=>{
-        e.preventDefault()
-        socket.emit('message', message)
-        
+   const handlerInput = (e)=>{
+    e.preventDefault()
+    const newMessage = {
+        send: email
     }
+       socket.emit("message", )
+
+   }
+    
     return (
         <div>
-            <form onSubmit={handlerSubmit} >
-                <input onChange={(e)=>setMessage(e.target.value)}  type="text" />
-                <button type='submit' >submit</button>
+            <form action="">
+                <input type="text" />
+                <button type='submit'>send</button>
             </form>
+            
         </div>
     );
 };
