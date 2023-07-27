@@ -1,7 +1,7 @@
 import Navbar from "../src/Components/Chat/Navbar";
 import Messages from "../src/Components/Chat/Messages";
 import './App.css'
-
+import Input from "../src/Components/Chat/Input";
 import { useState, useEffect } from "react";
 import { AuthProvider } from "../src/context/authContext";
 
@@ -34,6 +34,7 @@ function App() {
         <Navbar />
         <Messages messages={messageList} />
         <AuthForm></AuthForm>
+        <Input></Input>
       </AuthProvider>
             </>
   );

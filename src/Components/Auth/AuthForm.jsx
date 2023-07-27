@@ -6,6 +6,7 @@ import  axios from "axios";
 
 
 const AuthForm = () => {
+    const [messageList, setMessageList]= useState([])
     const socket = io('http://localhost:3000');
     const auth = useAuth()
     const name = auth.user.displayName
