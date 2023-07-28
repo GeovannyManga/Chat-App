@@ -28,9 +28,22 @@ const Input = () => {
   useEffect(() => {
     if (auth.user.email) {
       socket.emit('login', email);
+
+      //seccion comentada porque sera una funcionalidad mas adelante, por ahora esta en espera
+  
+      // Desasignar el evento 'payload' para evitar múltiples suscripciones
+      
+      // Asignar el evento 'payload' para recibir y manejar los mensajes
+      // socket.on('payload', (response) => {
+      //   setMessageList(response);
+      //   dispatch(messagesList(response)); // Dispatch directamente aquí
+      //   console.log(response); // Esto imprimirá la lista actualizada
+
+      
+      // });
     }
   }, [auth.user]);
-
+  
   const handlerInput = (e) => {
     e.preventDefault();
 
