@@ -34,13 +34,11 @@ const Input = () => {
       // Desasignar el evento 'payload' para evitar múltiples suscripciones
       
       // Asignar el evento 'payload' para recibir y manejar los mensajes
-      // socket.on('payload', (response) => {
-      //   setMessageList(response);
-      //   dispatch(messagesList(response)); // Dispatch directamente aquí
-      //   console.log(response); // Esto imprimirá la lista actualizada
-
-      
-      // });
+      const payload = {
+        from:email,
+        to: send
+      }
+      socket.emit('payload', payload);
     }
   }, [auth.user]);
   
@@ -50,6 +48,7 @@ const Input = () => {
     const newMessage = {
       send: email,
       body: message,
+      to: send
     };
     if (auth.user.email) {
       socket.emit('privateMessage', send, newMessage);
